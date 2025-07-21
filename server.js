@@ -68,7 +68,7 @@ app.put("/data/:id", (req, res) => {
   const data = readData();
   const index = data.findIndex((item) => item.id === req.params.id);
   if (index === -1) {
-  return res.status (404)-json({ message: "Data not found" });
+  return res.status (404).json({ message: "Data not found" });
   }
   data[index] = {...data[index], ...req.body }; 
   writeData (data);
@@ -93,7 +93,6 @@ app.post("/echo", (req, res) => {
   // Respond with the same data that was received in the request body
   res.json({ received: req.body });
 });
-
 
 // Wildcard route to handle undefined routes
 app.all("*", (req, res) => {
