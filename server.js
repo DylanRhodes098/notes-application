@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 
 // Define the port the server will listen on
-const PORT = 3002;
+const port = process.env.PORT || 3002;
 
 // Middleware to parse incoming JSON requests
 app.use(express.json());
@@ -101,7 +101,7 @@ app.all("*", (req, res) => {
 });
 
 // Start the server and listen on the specified port
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
