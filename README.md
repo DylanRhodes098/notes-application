@@ -33,6 +33,7 @@ An interactive note taking application that allows users to create, read, update
 ## How to Use
 
 ### Clone the repository 
+- git clone https://github.com/DylanRhodes098/notes-application.git
 
 ### Install npm 
 - Run npm i in the console
