@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dataForm = document.getElementById("data-form");
   const dataInput = document.getElementById("data-input");
 
-  // Function to fetch data from the backend //
+  // Create a function to fetch data from the data.json file //
   const fetchData = async () => {
+    // Initiate the request //
     try {
       // Triggers a get request to fetch data from data.json file //
       const response = await fetch("/data");
@@ -20,42 +21,50 @@ document.addEventListener("DOMContentLoaded", () => {
         li.className = "item"
         dataList.appendChild(li);
 
-        // Creates an edit field for each note //
+        // Create an edit field for each note //
         const editField = document.createElement("input");
         editField.className = "input"
-          dataList.appendChild(editField);
+        dataList.appendChild(editField);
 
-        // Creates an edit button for each edit field //
+        // Create an edit button for each edit field //
         const editButton = document.createElement("button");
-          editButton.textContent = "Edit";
-          dataList.appendChild(editButton);
+        editButton.textContent = "Edit";
+        dataList.appendChild(editButton);
 
-        // Creates a click event for editing notes //
+        // Create a click event for editing notes //
         editButton.addEventListener("click", async () => {
-        // Creates a variable for the edit feild  //
+        // Create a variable for the edit field  //
         const editedData = { text: editField.value };
 
-        // Initiate the request //
+    // Initiate the request //
     try {
-        // Triggers a http request to fetch the specific data from data.json file using id //
+      // Triggers a http request to fetch the specific data from data.json file using id //
       const response = await fetch(`/data/${item.id}`, {
-        // asigns the request as a put request //
+        // Asign the request as a put request //
         method: "PUT",
-        // Triggers a get request to fetch data from data.json file //
+        // Format the data as json //
         headers: { 
           "Content-Type": "application/json" 
         },
+        // Input the content to be sent to the data.json file //
         body: JSON.stringify(editedData),
       });
+
+          // Create an if statment to confirm the request was successful //
             if (response.ok) {
-              dataInput.value = ""; // Clear input field
-              fetchData(); // Refresh the list
+          // Create commnands to... //
+          // Clear the input field once a note has been added //
+              dataInput.value = ""; 
+          // Retrieve the new data in the data.json file //
+              fetchData(); 
             }
+          // Print an error if the request was unsuccessful //
           } catch (error) {
             console.error("Error");
           }
         });
      
+        // Create a delete button for each edit field //
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         dataList.appendChild(deleteButton);
@@ -69,9 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
           // assign the request as a delete request //
              method: "DELETE",
             });
-          // Checks if the data exists //
+          // Create an if statment to confirm the request was successful //
             if (response.ok) {
-          // Creates commnands to... //
+          // Create commnands to... //
           // Remove the text from the list //
               li.remove();
           // Remove the delete button from the list //
@@ -81,12 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
           // Remove the edit field from the list //
               editField.remove() 
             }
-          // Print an error if data doesnt exist //
+          // Print an error if the request was unsuccessful //
           } catch (error) {
             console.error("Error");
           }
             });
       });
+    // Print an error if the request was unsuccessful //
     } catch (error) {
       console.error("Error");
     }
@@ -98,22 +108,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const newData = { text: dataInput.value };
     // Initiate the request //
     try {
-    // Fetch a http request to the data.json file //
+      // Fetch a http request to the data.json file //
       const response = await fetch("/data", {
-    // Define as a POST request //
+      // Define as a POST request //
         method: "POST",
-    // Format the data as json //
+      // Format the data as json //
         headers: { 
           "Content-Type": "application/json" 
         },
-    // Input the content to be sent to the data.json file //
+      // Input the content to be sent to the data.json file //
         body: JSON.stringify(newData),
       });
-
+      // Create an if statment to confirm the request was successful //
       if (response.ok) {
-        dataInput.value = ""; // Clear input field
-        fetchData(); // Refresh the list
+      // Create commnands to... //
+        // Clear the input field once a note has been added //
+        dataInput.value = ""; 
+        // Retrieve the new data in the data.json file //
+        fetchData(); 
       }
+    // Print an error if the request was unsuccessful //
     } catch (error) {
       console.error("Error adding data:", error);
     }

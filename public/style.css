@@ -23,10 +23,12 @@ header {
     justify-content: space-between;
 }
 
-.logo{
-    padding:10px;
-    height:50px;
-    width:50px;
+img {
+    border:solid;
+    border-radius:10px;
+    margin:5px;
+    height:70px;
+    width: 70px;
 }
 
 .announcements {
@@ -36,6 +38,7 @@ header {
     color: var(--primary-color);
     padding:10px;
     text-decoration:none;
+    border-width:thin;
 }
 
 .help {
@@ -110,6 +113,7 @@ button {
     border-color:var(--secondary-color);
     border-width:thin;
     box-shadow: 2px 2px 8px var(--secondary-color);
+    cursor: pointer;
 }
 
 button:hover {
